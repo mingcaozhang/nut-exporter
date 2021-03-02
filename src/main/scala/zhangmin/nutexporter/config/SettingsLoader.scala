@@ -1,4 +1,4 @@
-package config
+package zhangmin.nutexporter.config
 
 import pureconfig.error.ConfigReaderFailures
 import pureconfig.{ConfigReader, ConfigSource}
