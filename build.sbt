@@ -1,6 +1,5 @@
-name := "nut-monitor"
-
-version := "0.1"
-
-scalaVersion := "2.13.5"
-
+lazy val root = Project("nut-monitor", file(".")).settings(
+  name := "nut-monitor",
+  scalafmtOnCompile := true,
+  libraryDependencies ++= Dependencies.deps
+)
