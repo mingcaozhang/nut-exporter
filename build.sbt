@@ -1,6 +1,16 @@
-lazy val root = Project("nut-monitor", file(".")).settings(
-  name := "nut-monitor",
-  organization := "zhangmin",
-  scalafmtOnCompile := true,
-  libraryDependencies ++= Dependencies.dependencies
+import com.typesafe.sbt.packager.docker._
+
+lazy val root = Project("nut-monitor", file("."))
+  .enablePlugins(AshScriptPlugin, JavaAppPackaging)
+  .settings(
+    name := "nut-monitor",
+    organization := "zhangmin",
+    scalafmtOnCompile := true,
+    libraryDependencies ++= Dependencies.dependencies,
+    dockerSettings
+  )
+
+lazy val dockerSettings = Seq(
+  dockerBaseImage := "instantlinux/nut-upsd:latest",
+  dockerCommands ++= Seq(Cmd("USER", "root"), ExecCmd("RUN", "apk", "add", "openjdk8-jre"))
 )
