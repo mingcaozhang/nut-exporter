@@ -6,14 +6,13 @@ object NutWrapper {
 
   /**
     * Get the nut output in the prometheus metrics format as a string.
+    * Runs the argument string as a process.
     *
-    * @param upsName name of the ups in the nut server's /etc/ups.conf
-    * @param upsdHost nut server host
-    * @param upsdPort nut server port
+    * @param upscCommand upsc command string to be run
     * @return prometheus metrics formatted nut output
     */
-  def getPrometheusNutOutput(upsName: String, upsdHost: String, upsdPort: Int): String = {
-    val rawOutput = s"upsc $upsName@$upsdHost:$upsdPort" !!
+  def getPrometheusNutOutput(upscCommand: String): String = {
+    val rawOutput = upscCommand !!
     val outputMapping = parseRawOutput(rawOutput)
     formatOutput(outputMapping)
   }
@@ -57,7 +56,7 @@ object NutWrapper {
     * Generate the metric string with # HELP and # TYPE metadata.
     * @param metricValue metric value
     * @param metricName metric name
-    * @param metricDescription metadat description
+    * @param metricDescription metadata description
     * @param metricType prometheus metric type
     * @return correctly formatted metric string with metadata
     */

@@ -7,13 +7,14 @@ object Utils {
     *
     * @return a tuple or None
     */
-  def listToPair[T](list: List[T]): Option[(T, T)] = list match {
-    case key :: tail =>
-      tail match {
-        case value :: Nil => Some(key, value)
-        case _            => None
-      }
-    case _ => None
-  }
+  def listToPair[T](list: List[T]): Option[(T, T)] =
+    list match {
+      case key :: tail =>
+        tail match {
+          case value :: Nil => Some(key, value)
+          case _            => None
+        }
+      case _ => None
+    }
 
 }

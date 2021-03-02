@@ -54,7 +54,7 @@ class NutWrapperSpec extends AnyFlatSpec with Matchers {
         |power_draw 10.0""".stripMargin
   }
 
-  it should "return a valid prometheus metric even if some required keys are misssing" in {
+  it should "return a valid prometheus metric even if some required keys are missing" in {
     NutWrapper
       .formatOutput(
         Map(
