@@ -1,4 +1,4 @@
-# nut-monitor
+# nut-exporter
 
 A simple Prometheus exporter for NUT (Network UPS Tools). 
 
