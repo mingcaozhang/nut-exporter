@@ -1,9 +1,9 @@
 import com.typesafe.sbt.packager.docker._
 
-lazy val root = Project("nut-monitor", file("."))
+lazy val root = Project("nut-exporter", file("."))
   .enablePlugins(AshScriptPlugin, JavaAppPackaging)
   .settings(
-    name := "nut-monitor",
+    name := "nut-exporter",
     organization := "zhangmin",
     scalafmtOnCompile := true,
     libraryDependencies ++= Dependencies.dependencies,
