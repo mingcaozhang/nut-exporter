@@ -12,5 +12,6 @@ lazy val root = Project("nut-monitor", file("."))
 
 lazy val dockerSettings = Seq(
   dockerBaseImage := "instantlinux/nut-upsd:latest",
+  packageName in Docker := "mingcaozhang/nut-exporter",
   dockerCommands ++= Seq(Cmd("USER", "root"), ExecCmd("RUN", "apk", "add", "openjdk8-jre"))
 )
