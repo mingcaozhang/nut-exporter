@@ -1,8 +1,10 @@
 package zhangmin.nutexporter
 
+import com.typesafe.scalalogging.LazyLogging
+
 import scala.sys.process._
 
-object NutWrapper {
+object NutWrapper extends LazyLogging {
 
   /**
     * Get the nut output in the prometheus metrics format as a string.
@@ -12,8 +14,9 @@ object NutWrapper {
     * @return prometheus metrics formatted nut output
     */
   def getPrometheusNutOutput(upscCommand: String): String = {
-    val rawOutput = upscCommand !!
-    val outputMapping = parseRawOutput(rawOutput)
+    val stdout = new StringBuilder
+    upscCommand ! ProcessLogger(out => stdout.append(s"$out\n"), err => logger.debug(err))
+    val outputMapping = parseRawOutput(stdout.mkString)
     formatOutput(outputMapping)
   }
 
